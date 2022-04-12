@@ -4,7 +4,7 @@ const Usuario = require('../models/usuario');
 
 const usuariosGet = async (req = request, res = response) => {
     const { limite = 5, desde = 0 } = req.query;
-    const query = {estado: true}
+    const query = { estado: true }
 
     const [total, usuarios] = await Promise.all([
         Usuario.countDocuments(query),
@@ -46,17 +46,15 @@ const usuariosPut = async (req = request, res = response) => {
     const usuario = await Usuario.findByIdAndUpdate(id, resto);
 
     res.json(usuario)
+    usuario
 
 }
 
 const usuariosDelete = async (req = request, res = response) => {
-    const id = req.params.id;
-    const estado = false;
-    const usuario = await Usuario.findByIdAndUpdate(id, {estado})
-    res.json({
-        usuario,
-        msg: 'Usuario Eliminado'
-    });
+    const {id} = req.params;
+    const usuario = await Usuario.findByIdAndUpdate(id, { estado: false });
+    console.log('esta llegando aqui');
+    res.json({ usuario });
 }
 
 const usuariosPatch = (req, res = response) => {

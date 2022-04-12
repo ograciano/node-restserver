@@ -14,6 +14,7 @@ class Server {
 
         //Path para el endpoint de usuarios
         this.usuariosPath = '/api/usuarios';
+        this.authPath = '/api/auth';
 
         //Conectar con base de datos
         this.conectarDB();
@@ -31,6 +32,7 @@ class Server {
 
     // metodo que exoone las rutas al publico del servidor
     routes(){
+        this.app.use(this.authPath, require('../routes/auth'))
         this.app.use(this.usuariosPath, require('../routes/usuarios'))
         
     }

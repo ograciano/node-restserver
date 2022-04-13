@@ -53,7 +53,6 @@ const usuariosPut = async (req = request, res = response) => {
 const usuariosDelete = async (req = request, res = response) => {
     const {id} = req.params;
     const usuario = await Usuario.findByIdAndUpdate(id, { estado: false });
-    console.log('esta llegando aqui');
     res.json({ usuario });
 }
 
